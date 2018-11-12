@@ -22,6 +22,7 @@ class OrganizerController(private val repository: OrganizersRepository) {
 
     @GetMapping("/sign_up")
     fun singUpForm(model: Model): String {
+        model["action"] = "sign_up"
         model["title"] = "Organizer registration"
         model["login"] = Organizer::login.name
         model["password"] = Organizer::password.name
