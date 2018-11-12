@@ -1,11 +1,11 @@
-package ru.mmishak.bicyclewalksspring.api.mappers
+package ru.mmishak.bicyclewalksspring.entity.mappers
 
-import ru.mmishak.bicyclewalksspring.entity.BicycleWalk
-import ru.mmishak.bicyclewalksspring.entity.Leader
+import ru.mmishak.bicyclewalksspring.entity.database.BicycleWalk
+import ru.mmishak.bicyclewalksspring.entity.database.Leader
 import ru.mmishak.bicyclewalksspring.exceptions.getOrNull
 import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
 import ru.mmishak.bicyclewalksspring.repository.WalksRepository
-import ru.mmishak.bicyclewalksspring.api.entity.Leader as ApiLeader
+import ru.mmishak.bicyclewalksspring.entity.api.Leader as ApiLeader
 
 class LeaderMapper(private val leaders: LeadersRepository, private val walks: WalksRepository) {
     fun transform(data: ApiLeader) = Leader(

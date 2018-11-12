@@ -1,11 +1,11 @@
-package ru.mmishak.bicyclewalksspring.api.mappers
+package ru.mmishak.bicyclewalksspring.entity.mappers
 
-import ru.mmishak.bicyclewalksspring.entity.BicycleWalk
-import ru.mmishak.bicyclewalksspring.entity.Cyclist
+import ru.mmishak.bicyclewalksspring.entity.database.BicycleWalk
+import ru.mmishak.bicyclewalksspring.entity.database.Cyclist
 import ru.mmishak.bicyclewalksspring.exceptions.getOrNull
 import ru.mmishak.bicyclewalksspring.repository.CyclistsRepository
 import ru.mmishak.bicyclewalksspring.repository.WalksRepository
-import ru.mmishak.bicyclewalksspring.api.entity.Cyclist as ApiCyclist
+import ru.mmishak.bicyclewalksspring.entity.api.Cyclist as ApiCyclist
 
 class CyclistMapper(private val cyclists: CyclistsRepository, private val walks: WalksRepository) {
     fun transform(data: ApiCyclist) = Cyclist(

@@ -1,4 +1,4 @@
-package ru.mmishak.bicyclewalksspring.api.entity
+package ru.mmishak.bicyclewalksspring.entity.api
 
 data class Leader(
     val id: Long = 0,

@@ -1,6 +1,6 @@
-package ru.mmishak.bicyclewalksspring.api.entity
+package ru.mmishak.bicyclewalksspring.entity.api
 
-import ru.mmishak.bicyclewalksspring.entity.base.LeaderStatus
+import ru.mmishak.bicyclewalksspring.entity.database.base.LeaderStatus
 
 data class BicycleWalk(
     var id: Long = 0,

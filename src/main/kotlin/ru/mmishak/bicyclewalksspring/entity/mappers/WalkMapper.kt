@@ -1,11 +1,12 @@
-package ru.mmishak.bicyclewalksspring.api.mappers
+package ru.mmishak.bicyclewalksspring.entity.mappers
 
-import ru.mmishak.bicyclewalksspring.entity.BicycleWalk
-import ru.mmishak.bicyclewalksspring.entity.Cyclist
+import ru.mmishak.bicyclewalksspring.entity.database.BicycleWalk
+import ru.mmishak.bicyclewalksspring.entity.database.Cyclist
+import ru.mmishak.bicyclewalksspring.exceptions.getOrNull
 import ru.mmishak.bicyclewalksspring.repository.CyclistsRepository
 import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
 import ru.mmishak.bicyclewalksspring.repository.OrganizersRepository
-import ru.mmishak.bicyclewalksspring.api.entity.BicycleWalk as ApiWalk
+import ru.mmishak.bicyclewalksspring.entity.api.BicycleWalk as ApiWalk
 
 class WalkMapper(
     private val organizers: OrganizersRepository,
@@ -19,7 +20,8 @@ class WalkMapper(
         distance = data.distance,
         date = data.date,
         price = data.price,
-        organizer = organizers.findById(data.organizerId).get(),
+        organizer = organizers.findById(data.organizerId).getOrNull()
+            ?: throw NoSuchElementException("Organizer not found."),
         cyclists = cyclists.findAllById(data.cyclistsIds).toMutableList(),
         leader = data.leaderId?.let { if (leaders.existsById(it)) leaders.findById(it).get() else null },
         leaderStatus = data.leaderStatus

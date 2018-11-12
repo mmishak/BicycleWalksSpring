@@ -1,4 +1,4 @@
-package ru.mmishak.bicyclewalksspring.web.status
+package ru.mmishak.bicyclewalksspring.conrollers.web
 
 import org.springframework.boot.web.servlet.error.ErrorController
 import org.springframework.stereotype.Controller
