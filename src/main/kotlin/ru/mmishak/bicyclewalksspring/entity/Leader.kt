@@ -1,10 +1,7 @@
 package ru.mmishak.bicyclewalksspring.entity
 
 import ru.mmishak.bicyclewalksspring.entity.base.User
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 import ru.mmishak.bicyclewalksspring.entity.base.Entity as DbEntity
 
 @Entity
@@ -14,5 +11,7 @@ data class Leader(
     override val login: String,
     override val email: String,
     override val password: String,
-    override val name: String
+    override val name: String,
+    @OneToMany(mappedBy = "leader")
+    val bicycleWalks: MutableList<BicycleWalk> = mutableListOf()
 ) : DbEntity, User
