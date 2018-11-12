@@ -11,8 +11,8 @@ import ru.mmishak.bicyclewalksspring.entity.base.Entity as DbEntity
 data class Organizer(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     override val id: Long = 0,
-    override val email: String,
     override val login: String,
+    override val email: String,
     override val password: String,
     override val name: String
 ) : DbEntity, User

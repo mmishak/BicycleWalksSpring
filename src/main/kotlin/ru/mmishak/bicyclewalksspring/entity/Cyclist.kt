@@ -10,9 +10,9 @@ import ru.mmishak.bicyclewalksspring.entity.base.Entity as DbEntity
 @Entity
 data class Cyclist(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    override val id: Long,
+    override val id: Long = 0,
     override val login: String,
-    override val password: String,
     override val email: String,
+    override val password: String,
     override val name: String
 ) : DbEntity, User
