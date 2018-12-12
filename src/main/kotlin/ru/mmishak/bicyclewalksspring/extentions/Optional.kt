@@ -1,4 +1,4 @@
-package ru.mmishak.bicyclewalksspring.exceptions
+package ru.mmishak.bicyclewalksspring.extentions
 
 import java.util.*
 

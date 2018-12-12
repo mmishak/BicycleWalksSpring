@@ -1,10 +1,10 @@
 package ru.mmishak.bicyclewalksspring.conrollers.api
 
 import org.springframework.web.bind.annotation.*
-import ru.mmishak.bicyclewalksspring.entity.api.Cyclist
-import ru.mmishak.bicyclewalksspring.entity.mappers.CyclistMapper
 import ru.mmishak.bicyclewalksspring.exceptions.ElementAlreadyExists
 import ru.mmishak.bicyclewalksspring.exceptions.ElementNotFound
+import ru.mmishak.bicyclewalksspring.model.api.Cyclist
+import ru.mmishak.bicyclewalksspring.model.mappers.CyclistMapper
 import ru.mmishak.bicyclewalksspring.repository.CyclistsRepository
 import ru.mmishak.bicyclewalksspring.repository.WalksRepository
 

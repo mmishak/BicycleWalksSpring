@@ -1,4 +1,4 @@
-package ru.mmishak.bicyclewalksspring.entity.api
+package ru.mmishak.bicyclewalksspring.model.api
 
 data class Cyclist(
     val id: Long = 0,

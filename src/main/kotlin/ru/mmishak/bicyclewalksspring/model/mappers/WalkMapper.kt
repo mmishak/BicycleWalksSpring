@@ -1,12 +1,12 @@
-package ru.mmishak.bicyclewalksspring.entity.mappers
+package ru.mmishak.bicyclewalksspring.model.mappers
 
-import ru.mmishak.bicyclewalksspring.entity.database.BicycleWalk
-import ru.mmishak.bicyclewalksspring.entity.database.Cyclist
-import ru.mmishak.bicyclewalksspring.exceptions.getOrNull
+import ru.mmishak.bicyclewalksspring.extentions.getOrNull
+import ru.mmishak.bicyclewalksspring.model.database.BicycleWalk
+import ru.mmishak.bicyclewalksspring.model.database.Cyclist
 import ru.mmishak.bicyclewalksspring.repository.CyclistsRepository
 import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
 import ru.mmishak.bicyclewalksspring.repository.OrganizersRepository
-import ru.mmishak.bicyclewalksspring.entity.api.BicycleWalk as ApiWalk
+import ru.mmishak.bicyclewalksspring.model.api.BicycleWalk as ApiWalk
 
 class WalkMapper(
     private val organizers: OrganizersRepository,
