@@ -13,7 +13,7 @@ class WalkMapper(
     private val cyclists: CyclistsRepository,
     private val leaders: LeadersRepository
 ) {
-    fun transform(data: ApiWalk) = BicycleWalk(
+    fun toModel(data: ApiWalk) = BicycleWalk(
         title = data.title,
         description = data.description,
         duration = data.duration,
@@ -27,7 +27,7 @@ class WalkMapper(
         leaderStatus = data.leaderStatus
     )
 
-    fun transform(data: BicycleWalk) = ApiWalk(
+    fun toApi(data: BicycleWalk) = ApiWalk(
         id = data.id,
         title = data.title,
         description = data.description,

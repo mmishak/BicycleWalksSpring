@@ -13,7 +13,7 @@ import ru.mmishak.bicyclewalksspring.model.api.BicycleWalk as ApiWalk
 @RestController
 @RequestMapping("/api/walks")
 class WalksRestController(
-    private val repository: WalksRepository,
+    private val walks: WalksRepository,
     organizers: OrganizersRepository,
     cyclists: CyclistsRepository,
     leaders: LeadersRepository
@@ -21,31 +21,31 @@ class WalksRestController(
     private val mapper = WalkMapper(organizers, cyclists, leaders)
 
     @GetMapping("/all")
-    fun getAll(): Iterable<ApiWalk> = repository.findAll().map(mapper::transform)
+    fun getAll(): Iterable<ApiWalk> = walks.findAll().map(mapper::toApi)
 
     @PostMapping("/create")
     fun create(@RequestBody walk: ApiWalk): Any = when {
-        repository.existsById(walk.id) -> ElementAlreadyExists()
-        else -> mapper.transform(repository.save(mapper.transform(walk)))
+        walks.existsById(walk.id) -> ElementAlreadyExists()
+        else -> mapper.toApi(walks.save(mapper.toModel(walk)))
     }
 
     @GetMapping("/{id}")
     fun get(@PathVariable(value = "id") id: Long): Any = try {
-        mapper.transform(repository.findById(id).get())
+        mapper.toApi(walks.findById(id).get())
     } catch (e: Exception) {
         ElementNotFound()
     }
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable(value = "id") id: Long) = try {
-        repository.deleteById(id)
+        walks.deleteById(id)
     } catch (e: Exception) {
         ElementNotFound()
     }
 
     @PostMapping("/change")
     fun update(@RequestBody walk: ApiWalk): Any = when {
-        repository.existsById(walk.id) -> mapper.transform(repository.save(mapper.transform(walk)))
+        walks.existsById(walk.id) -> mapper.toApi(walks.save(mapper.toModel(walk)))
         else -> ElementNotFound()
     }
 }

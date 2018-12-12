@@ -8,7 +8,7 @@ import ru.mmishak.bicyclewalksspring.repository.WalksRepository
 import ru.mmishak.bicyclewalksspring.model.api.Leader as ApiLeader
 
 class LeaderMapper(private val leaders: LeadersRepository, private val walks: WalksRepository) {
-    fun transform(data: ApiLeader) = Leader(
+    fun toModel(data: ApiLeader) = Leader(
         id = data.id,
         login = data.login,
         email = data.email,
@@ -18,7 +18,7 @@ class LeaderMapper(private val leaders: LeadersRepository, private val walks: Wa
         bicycleWalks = walks.findAllById(data.bicycleWalksIds).toMutableList()
     )
 
-    fun transform(data: Leader) = ApiLeader(
+    fun toApi(data: Leader) = ApiLeader(
         id = data.id,
         login = data.login,
         email = data.email,

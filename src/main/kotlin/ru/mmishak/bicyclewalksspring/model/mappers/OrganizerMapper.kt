@@ -8,7 +8,7 @@ import ru.mmishak.bicyclewalksspring.repository.WalksRepository
 import ru.mmishak.bicyclewalksspring.model.api.Organizer as ApiOrganizer
 
 class OrganizerMapper(private val organizers: OrganizersRepository, private val walks: WalksRepository) {
-    fun transform(data: ApiOrganizer) = Organizer(
+    fun toModel(data: ApiOrganizer) = Organizer(
         id = data.id,
         login = data.login,
         email = data.email,
@@ -18,7 +18,7 @@ class OrganizerMapper(private val organizers: OrganizersRepository, private val 
         bicycleWalks = walks.findAllById(data.bicycleWalksIds).toMutableList()
     )
 
-    fun transform(data: Organizer) = ApiOrganizer(
+    fun toApi(data: Organizer) = ApiOrganizer(
         id = data.id,
         login = data.login,
         email = data.email,

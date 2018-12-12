@@ -8,7 +8,7 @@ import ru.mmishak.bicyclewalksspring.repository.WalksRepository
 import ru.mmishak.bicyclewalksspring.model.api.Cyclist as ApiCyclist
 
 class CyclistMapper(private val cyclists: CyclistsRepository, private val walks: WalksRepository) {
-    fun transform(data: ApiCyclist) = Cyclist(
+    fun toModel(data: ApiCyclist) = Cyclist(
         id = data.id,
         login = data.login,
         email = data.email,
@@ -18,7 +18,7 @@ class CyclistMapper(private val cyclists: CyclistsRepository, private val walks:
         bicycleWalks = walks.findAllById(data.bicycleWalksIds).toMutableList()
     )
 
-    fun transform(data: Cyclist) = ApiCyclist(
+    fun toApi(data: Cyclist) = ApiCyclist(
         id = data.id,
         login = data.login,
         email = data.email,

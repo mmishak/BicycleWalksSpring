@@ -10,36 +10,36 @@ import ru.mmishak.bicyclewalksspring.repository.WalksRepository
 
 @RestController
 @RequestMapping("/api/organizers")
-class OrganizersRestController(private val repository: OrganizersRepository, walks: WalksRepository) {
+class OrganizersRestController(private val organizers: OrganizersRepository, walks: WalksRepository) {
 
-    private val mapper = OrganizerMapper(repository, walks)
+    private val mapper = OrganizerMapper(organizers, walks)
 
     @GetMapping("/all")
-    fun getAll(): Iterable<Organizer> = repository.findAll().map(mapper::transform)
+    fun getAll(): Iterable<Organizer> = organizers.findAll().map(mapper::toApi)
 
     @PostMapping("/registration")
     fun create(@RequestBody organizer: Organizer): Any = when {
-        repository.existsById(organizer.id) -> ElementAlreadyExists()
-        else -> mapper.transform(repository.save(mapper.transform(organizer)))
+        organizers.existsById(organizer.id) -> ElementAlreadyExists()
+        else -> mapper.toApi(organizers.save(mapper.toModel(organizer)))
     }
 
     @GetMapping("/{id}")
     fun get(@PathVariable(value = "id") id: Long): Any = try {
-        mapper.transform(repository.findById(id).get())
+        mapper.toApi(organizers.findById(id).get())
     } catch (e: Exception) {
         ElementNotFound()
     }
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable(value = "id") id: Long) = try {
-        repository.deleteById(id)
+        organizers.deleteById(id)
     } catch (e: Exception) {
         ElementNotFound()
     }
 
     @PostMapping("/change")
     fun update(@RequestBody organizer: Organizer): Any = when {
-        repository.existsById(organizer.id) -> mapper.transform(repository.save(mapper.transform(organizer)))
+        organizers.existsById(organizer.id) -> mapper.toApi(organizers.save(mapper.toModel(organizer)))
         else -> ElementNotFound()
     }
 }
