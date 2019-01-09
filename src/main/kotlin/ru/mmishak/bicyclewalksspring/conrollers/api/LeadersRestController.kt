@@ -4,9 +4,10 @@ import org.springframework.web.bind.annotation.*
 import ru.mmishak.bicyclewalksspring.exceptions.ElementAlreadyExists
 import ru.mmishak.bicyclewalksspring.exceptions.ElementNotFound
 import ru.mmishak.bicyclewalksspring.model.api.Leader
+import ru.mmishak.bicyclewalksspring.model.api.LoginData
 import ru.mmishak.bicyclewalksspring.model.mappers.LeaderMapper
-import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
-import ru.mmishak.bicyclewalksspring.repository.WalksRepository
+import ru.mmishak.bicyclewalksspring.model.repository.LeadersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.WalksRepository
 
 @RestController
 @RequestMapping("/api/leaders")
@@ -18,9 +19,15 @@ class LeadersRestController(private val leaders: LeadersRepository, walks: Walks
     fun getAll(): Iterable<Leader> = leaders.findAll().map(mapper::toApi)
 
     @PostMapping("/registration")
-    fun create(@RequestBody organizer: Leader): Any = when {
-        leaders.existsById(organizer.id) -> ElementAlreadyExists()
-        else -> mapper.toApi(leaders.save(mapper.toModel(organizer)))
+    fun create(@RequestBody leader: Leader): Any = when {
+        leaders.findAll().any { it.login == leader.login || it.email == leader.email } -> ElementAlreadyExists()
+        else -> mapper.toApi(leaders.save(mapper.toModel(leader)))
+    }
+
+    @PostMapping("/login")
+    fun login(@RequestBody loginData: LoginData): Any {
+        val (login, password) = loginData
+        return leaders.findAll().find { it.login == login && it.password == password } ?: ElementNotFound()
     }
 
     @GetMapping("/{id}")

@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.*
 import ru.mmishak.bicyclewalksspring.exceptions.ElementAlreadyExists
 import ru.mmishak.bicyclewalksspring.exceptions.ElementNotFound
 import ru.mmishak.bicyclewalksspring.model.mappers.WalkMapper
-import ru.mmishak.bicyclewalksspring.repository.CyclistsRepository
-import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
-import ru.mmishak.bicyclewalksspring.repository.OrganizersRepository
-import ru.mmishak.bicyclewalksspring.repository.WalksRepository
+import ru.mmishak.bicyclewalksspring.model.repository.CyclistsRepository
+import ru.mmishak.bicyclewalksspring.model.repository.LeadersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.OrganizersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.WalksRepository
 import ru.mmishak.bicyclewalksspring.model.api.BicycleWalk as ApiWalk
 
 @RestController

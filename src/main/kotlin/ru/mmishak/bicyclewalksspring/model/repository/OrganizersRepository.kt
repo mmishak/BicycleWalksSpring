@@ -1,4 +1,4 @@
-package ru.mmishak.bicyclewalksspring.repository
+package ru.mmishak.bicyclewalksspring.model.repository
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository

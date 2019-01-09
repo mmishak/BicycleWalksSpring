@@ -3,9 +3,9 @@ package ru.mmishak.bicyclewalksspring.model.mappers
 import ru.mmishak.bicyclewalksspring.extentions.getOrNull
 import ru.mmishak.bicyclewalksspring.model.database.BicycleWalk
 import ru.mmishak.bicyclewalksspring.model.database.Cyclist
-import ru.mmishak.bicyclewalksspring.repository.CyclistsRepository
-import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
-import ru.mmishak.bicyclewalksspring.repository.OrganizersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.CyclistsRepository
+import ru.mmishak.bicyclewalksspring.model.repository.LeadersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.OrganizersRepository
 import ru.mmishak.bicyclewalksspring.model.api.BicycleWalk as ApiWalk
 
 class WalkMapper(

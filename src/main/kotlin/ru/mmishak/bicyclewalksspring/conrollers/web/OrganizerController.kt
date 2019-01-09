@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import ru.mmishak.bicyclewalksspring.model.database.Organizer
-import ru.mmishak.bicyclewalksspring.repository.OrganizersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.OrganizersRepository
 
 @Controller
 @RequestMapping("/organizers")

@@ -3,8 +3,8 @@ package ru.mmishak.bicyclewalksspring.model.mappers
 import ru.mmishak.bicyclewalksspring.extentions.getOrNull
 import ru.mmishak.bicyclewalksspring.model.database.BicycleWalk
 import ru.mmishak.bicyclewalksspring.model.database.Leader
-import ru.mmishak.bicyclewalksspring.repository.LeadersRepository
-import ru.mmishak.bicyclewalksspring.repository.WalksRepository
+import ru.mmishak.bicyclewalksspring.model.repository.LeadersRepository
+import ru.mmishak.bicyclewalksspring.model.repository.WalksRepository
 import ru.mmishak.bicyclewalksspring.model.api.Leader as ApiLeader
 
 class LeaderMapper(private val leaders: LeadersRepository, private val walks: WalksRepository) {
