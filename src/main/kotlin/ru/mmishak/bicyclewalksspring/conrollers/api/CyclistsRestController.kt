@@ -27,7 +27,10 @@ class CyclistsRestController(private val cyclists: CyclistsRepository, walks: Wa
     @PostMapping("/login")
     fun login(@RequestBody loginData: LoginData): Any {
         val (login, password) = loginData
-        return cyclists.findAll().find { it.login == login && it.password == password } ?: ElementNotFound()
+        return cyclists.findAll()
+            .find { it.login == login && it.password == password }
+            ?.let { mapper.toApi(it) }
+            ?: ElementNotFound()
     }
 
     @GetMapping("/{id}")
@@ -42,11 +45,5 @@ class CyclistsRestController(private val cyclists: CyclistsRepository, walks: Wa
         cyclists.deleteById(id)
     } catch (e: Exception) {
         ElementNotFound()
-    }
-
-    @PostMapping("/change")
-    fun update(@RequestBody cyclist: Cyclist): Any = when {
-        cyclists.existsById(cyclist.id) -> mapper.toApi(cyclists.save(mapper.toModel(cyclist)))
-        else -> ElementNotFound()
     }
 }

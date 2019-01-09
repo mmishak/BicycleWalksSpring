@@ -27,7 +27,10 @@ class LeadersRestController(private val leaders: LeadersRepository, walks: Walks
     @PostMapping("/login")
     fun login(@RequestBody loginData: LoginData): Any {
         val (login, password) = loginData
-        return leaders.findAll().find { it.login == login && it.password == password } ?: ElementNotFound()
+        return leaders.findAll()
+            .find { it.login == login && it.password == password }
+            ?.let { mapper.toApi(it) }
+            ?: ElementNotFound()
     }
 
     @GetMapping("/{id}")
@@ -42,11 +45,5 @@ class LeadersRestController(private val leaders: LeadersRepository, walks: Walks
         leaders.deleteById(id)
     } catch (e: Exception) {
         ElementNotFound()
-    }
-
-    @PostMapping("/change")
-    fun update(@RequestBody leader: Leader): Any = when {
-        leaders.existsById(leader.id) -> mapper.toApi(leaders.save(mapper.toModel(leader)))
-        else -> ElementNotFound()
     }
 }

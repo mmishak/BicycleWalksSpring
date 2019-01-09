@@ -27,7 +27,11 @@ class OrganizersRestController(private val organizers: OrganizersRepository, wal
     @PostMapping("/login")
     fun login(@RequestBody loginData: LoginData): Any {
         val (login, password) = loginData
-        return organizers.findAll().find { it.login == login && it.password == password } ?: ElementNotFound()
+        return organizers.findAll()
+            .find { it.login == login && it.password == password }
+            ?.let { mapper.toApi(it) }
+            ?: ElementNotFound()
+
     }
 
     @GetMapping("/{id}")
@@ -42,11 +46,5 @@ class OrganizersRestController(private val organizers: OrganizersRepository, wal
         organizers.deleteById(id)
     } catch (e: Exception) {
         ElementNotFound()
-    }
-
-    @PostMapping("/change")
-    fun update(@RequestBody organizer: Organizer): Any = when {
-        organizers.existsById(organizer.id) -> mapper.toApi(organizers.save(mapper.toModel(organizer)))
-        else -> ElementNotFound()
     }
 }
